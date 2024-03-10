@@ -65,11 +65,14 @@ def ObstacleSpace(location):
     elif (x <= 350+bl)  and (x >= 275-bl) and (y <= 400+bl) and (y > 0):
         return True
 # for u-shape 
-    elif (x >= 895 and x <= 1105 and y >= 45 and y <= 130  or x >= 1015 and x <= 1100 and y >= 45 and y <= 180):
+    elif (x >= 895 and x <= 1105 and y >= 45 and y <= 130 ):
         return True
     
     elif (x >= 895 and x <= 1105 and y <= 455  and y >= 370):
         return True
+    
+    elif (x <= 1095 and x >= 1015 and y <= 375  and y >= 125):
+        return True 
 
    # Check global bloated obstacles
     for obstacle in bloated_obstacles:
@@ -328,6 +331,7 @@ def dijkstra_algo(start, goal):
             cv2.imwrite("Path_Taken.jpg", space_viz)
             saveViz.release()
             end_time = time.time()
+            print("Path found with total cost:", current.cost_to_come)
             print("Time taken = ", (end_time - start_time) / 60, " min")
             return True, pathTaken
     
@@ -338,7 +342,7 @@ def dijkstra_algo(start, goal):
                     openListSet.add(actionChild.loc)  # Add new node location to the set
                     x, y = actionChild.loc
                     region[region.shape[0]-y-1, x] = [0, 255, 255]
-                    #resized_frame = cv2.resize(region, (600, 250))  
+                    #resized_frame = cv2.resize(region, (300, 125))  
                     saveViz.write(region)
                     
     return False, []
