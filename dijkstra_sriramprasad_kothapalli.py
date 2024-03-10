@@ -346,28 +346,41 @@ def dijkstra_algo(start, goal):
 # main function to take user input and call dijkstra function
 def main():
     print("----Dijkstra's Algorithm----")
+    # Initialize start and goal coordinates
+    start_x = start_y = goal_x = goal_y = None
+        # Loop to ensure start coordinates are within bounds
+    while True:
+        try:
+            start_x = int(input("Enter x co-ordinate of start position: "))
+            start_y = int(input("Enter y co-ordinate of start position: "))
+            if start_x < 0 or start_x > 1200 or start_y < 0 or start_y > 500:
+                print("Start position must be within a 1200x500 region. Please enter values again.")
+            else:
+                break
+        except ValueError:
+            print("Please enter valid integer values.")
     
-    # take user input for start
-    start_x = int(input("Enter x co-ordinate of start position: "))
-    start_y = int(input("Enter y co-ordinate of start position: "))
-
-    # take user input for goal
-    goal_x = int(input("Enter x co-ordinate of goal position: "))
-    goal_y = int(input("Enter y co-ordinate of goal position: "))    
+    # Loop to ensure goal coordinates are within bounds
+    while True:
+        try:
+            goal_x = int(input("Enter x co-ordinate of goal position: "))
+            goal_y = int(input("Enter y co-ordinate of goal position: "))    
+            if goal_x < 0 or goal_x > 1200 or goal_y < 0 or goal_y > 500:
+                print("Goal position must be within a 1200x500 region. Please enter values again.")
+            else:
+                break
+        except ValueError:
+            print("Please enter valid integer values.")
     
     start = (start_x, start_y)
     goal = (goal_x, goal_y)
     
-    # call dijkstra_algo function to find optimal path
+    # Call dijkstra_algo function to find optimal path
     success, backPath = dijkstra_algo(start, goal)
     if success:
         print("Path generated")
     else:
         print("Path not found")
-
-"""
--> sample input : start(10,30); goal = (750,100)
-"""
 
 
 if __name__ == "__main__":
