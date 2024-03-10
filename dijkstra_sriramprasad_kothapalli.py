@@ -96,6 +96,7 @@ class createNode:
 ## input: pointer to current node
 ## output: cost of action, created child
 
+
 # action for moving down
 def moveDown(node):
     cost = 1
@@ -252,4 +253,5 @@ def olItem(node):
 
 
 if __name__ == "__main__":
+    # main function
     main()
